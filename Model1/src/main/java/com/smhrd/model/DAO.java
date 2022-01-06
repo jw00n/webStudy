@@ -10,8 +10,9 @@ import java.sql.ResultSet;
 
 public class DAO {
 
-	public void login(String id, String pw) {
+	public MemberVO login(String id, String pw) {
 		//로그인 성공여부 판단
+		MemberVO vo = new MemberVO();
 		try {
 			//1. 	jar 파일 집어넣고 class 동적 로딩
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -41,10 +42,17 @@ public class DAO {
 			//rs.next() -> 커서를 한칸내리고 값의 여부를 리턴
 			//rs.next() == true ==> 해당하는 값이 있다.
 			String nickname = null;
+		
 			if (rs.next()) {
+				//DB에서 불러오기
+				String uid= rs.getString(1);
+				String upw= rs.getString(2);
 				nickname = rs.getString("nickname");
 				//String nicknam2 = rs.getString("3"); //인덱스로 불러올수있음
 
+				
+				//결과를 membeVo에  묶어주기
+				vo = new MemberVO(uid, upw, nickname);
 			}
 
 			//DB 문 닫아주기 -> 순서대로 닫아줘야
@@ -57,5 +65,6 @@ public class DAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return vo;
 	}
 }
