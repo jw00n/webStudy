@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.MemberVO"%>
+<%@page import="com.smhrd.model.DAO"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -22,10 +24,13 @@
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pw");
 
+	DAO dao = new DAO();
+	MemberVO vo = dao.login(id, pw);
+
 	//성공 or 실패에 따른 페이지 이동
-	if (nickname != null) {
+	if (vo != null) {
 		System.out.print("로그인성공");
-		response.sendRedirect("ex14loginS.jsp?nickname=" + URLEncoder.encode(nickname, "utf-8"));
+		response.sendRedirect("ex14loginS.jsp?nickname=" + URLEncoder.encode(vo.getNickname(), "utf-8"));
 	} else {
 		//null
 		System.out.print("로그인 실패");
