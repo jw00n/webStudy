@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Model.DAO;
 
-@WebServlet("/JoinService")
+@WebServlet("/Join")
 public class JoinService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,7 +28,7 @@ public class JoinService extends HttpServlet {
 		int cnt = dao.join(id, pw, name);
 
 		// 결과에 따른 이동
-		String moveURL = null;
+
 		if (cnt > 0) {
 			System.out.println("성공");
 			response.sendRedirect("ex14login.html");
