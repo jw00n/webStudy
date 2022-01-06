@@ -5,9 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+//import 단축키 ctrl shift O
+
+
 public class DAO {
 
-	public void login() {
+	public void login(String id, String pw) {
 		//로그인 성공여부 판단
 		try {
 			//1. 	jar 파일 집어넣고 class 동적 로딩

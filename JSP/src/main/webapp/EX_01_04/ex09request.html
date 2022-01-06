@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>성적 입력</title>
+</head>
+<body>
+	<fieldset style= "width:370px; height: 200px">
+		<legend>학점 확인 프로그램</legend>
+		<form action="ex09request.jsp" method="post">
+			<table>
+				<tr>
+					<td>이름</td>
+					<td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+				
+					<td>Java 점수</td>
+					<td><input type="text" name="java">
+					<input type="hidden" value="2022-01-04" name="today"></td>
+				</tr>
+				<tr>
+					<td>Python 점수</td>
+					<td><input type="text" name="python"></td>
+				</tr>
+				<tr>
+					<td>Web 점수</td>
+					<td><input type="text" name="web"></td>
+				</tr>
+				<tr>
+					<td>Machine Learning 점수</td>
+					<td><input type="text" name="ml"></td>
+				</tr>
+				<tr>
+					<td align="center" colspan="2"><input type="submit" value="확인하기"></td>
+				</tr>
+			</table>
+
+		</form>
+
+	</fieldset>
+</body>
+</html>

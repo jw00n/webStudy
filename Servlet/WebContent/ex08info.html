@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ex09UserInfo</title>
+</head>
+<body>
+   <h1>여러개의 값을 서버로 전송하기!</h1>
+   <form action = "UserInfo" method = "post">
+      <!-- 
+         input태그의 radio, checkbox 타입은 value속성에 값을 정의해야한다.
+         설정하지 않으면 on이라는 값이 전달
+      -->
+      좋아하는 음식을 선택해주세요<br>
+      시금치피자<input type="checkbox" name = "food" value = "시금치피자"><br>
+      알리오올리오<input type="checkbox" name = "food" value = "알리오올리오"><br>
+      블루베리도너츠<input type="checkbox" name = "food" value = "블루베리도너츠"><br>
+      
+      <input type="submit" value = "완료"><br>
+   </form>
+
+</body>
+</html>
