@@ -7,13 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<%
-String id=request.getParameter("nickname");
-%>
 <fieldset>
-<h1> <%= id %> 로그인 성공</h1>
-
+<h1> 로그인 실패</h1>
 </fieldset>
 </body>
 </html>
