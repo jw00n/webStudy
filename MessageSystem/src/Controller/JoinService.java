@@ -18,7 +18,7 @@ public class JoinService extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("[JoinService]");
+		System.out.println("======[JoinService]======");
 
 		// 1. post방식 인코딩
 		request.setCharacterEncoding("UTF-8");

@@ -13,6 +13,11 @@ public class MemberDTO {
 		this.address = address;
 	}
 
+	public MemberDTO(String email, String pw) {
+		this.email = email;
+		this.pw = pw;
+	}
+
 	public String getEmail() {
 		return email;
 	}
