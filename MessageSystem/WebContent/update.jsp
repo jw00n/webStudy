@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@page import="Model.MemberDTO"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<title>Forty by HTML5 UP</title>
 		<meta charset="utf-8" />
-		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
@@ -16,19 +17,23 @@
 	
 	</style>
 	<body style="text-align: center;">
+<%
+	MemberDTO info=(MemberDTO)session.getAttribute("info");
 
+%>
 		<!-- Wrapper -->
 			<div id="wrapper">
 				<!-- Menu -->
 					<nav id="Update">	
 						<ul class="actions vertical">
-							<li><h5>È¸¿øÁ¤º¸¼öÁ¤</h5></li>
-								<form>
-									<li>Á¢¼ÓÇÑ Email : ¼¼¼Ç¿µ¿ª¿¡ ÀúÀåµÈ emailÀ» Ãâ·ÂÇÏ½Ã¿À.</li>
-									<li><input type="password" placeholder="PW¸¦ ÀÔ·ÂÇÏ¼¼¿ä" style="width: 500px; margin: 0 auto;"></li>
-									<li><input type="text" placeholder="ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä" style="width: 500px; margin: 0 auto;"></li>
-									<li><input type="text" placeholder="ÁýÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ¼¼¿ä" style="width: 500px; margin: 0 auto;"></li>
-									<li><input type="submit" value="JoinUs" class="button fit" style="width: 500px; margin: 0 auto;"></li>
+							<li><h5>íšŒì›ì •ë³´ìˆ˜ì •</h5></li>
+								<form action="UpdateService" method="post">
+								<!--ì—…ë°ì´íŠ¸ ì„œë¸”ë¦¿ìœ¼ë¡œ ë³´ë‚´ì¤Œ-->
+									<li>ì ‘ì†í•œ Email :<%=info.getEmail() %> </li>
+									<li><input type="password" name= "pw" placeholder="PWë¥¼ ìž…ë ¥í•˜ì„¸ìš”" style="width: 500px; margin: 0 auto;"></li>
+									<li><input type="text" name= "tel" placeholder="ì „í™”ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš”" style="width: 500px; margin: 0 auto;"></li>
+									<li><input type="text" name= "address" placeholder="ì§‘ì£¼ì†Œë¥¼ ìž…ë ¥í•˜ì„¸ìš”" style="width: 500px; margin: 0 auto;"></li>
+									<li><input type="submit" value="Update" class="button fit" style="width: 500px; margin: 0 auto;"></li>
 								</form>
 						</ul>
 					</nav>			
