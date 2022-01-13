@@ -17,6 +17,13 @@ public class MemberDTO {
 		this.email = email;
 		this.pw = pw;
 	}
+	
+	//계정관리용
+	public MemberDTO(String email, String tel, String address) {
+		this.email = email;
+		this.tel = tel;
+		this.address = address;
+	}
 
 	public String getEmail() {
 		return email;

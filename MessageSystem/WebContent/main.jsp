@@ -1,3 +1,4 @@
+<%@page import="Model.MessageDTO"%>
 <%@page import="Model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="EUC-KR"%>
@@ -16,7 +17,7 @@
 	<%
 		//단, 로그인이  되어있을때만 불러올 수 있다.
 	//로그인 정보 불러오기
-	MemberDTO info = (MemberDTO) session.getAttribute("info");
+	MemberDTO info = (MemberDTO)session.getAttribute("info");
 	String email = "로그인 하세요.";
 	String tel= "로그인 하세요.";
 	String address= "로그인 하세요.";
@@ -27,6 +28,12 @@
 		address = info.getAddress();
 	} 
 	
+	
+	//메세지 불러오기 //이걸 굳이 세션을..
+	//받은 사람의 이메일을 불러오기 email==receiveEmail만 넘겨서?
+	//이메일을 넘겨주면 해당하는 db에서 메시지 내용 긁어와서 리턴해주고
+	MessageDTO mss=(MessageDTO)session.getAttribute("mss");
+		
 	%>
 	<!-- Wrapper -->
 	<div id="wrapper">
@@ -37,8 +44,11 @@
 			 <nav>
 			<!-- 로그인 후 Logout.jsp로 이동할 수 있는'로그아웃'링크와 '개인정보수정'링크를 출력하시오. -->
 		<%if(info!=null){ %>
-		<a href="update.jsp">개인정보 수정</a>
-		<a href="LogoutService">로그아웃</a>
+			<%if(info.getEmail().equals("admin")){ %>
+			<a href="select.jsp">회원정보관리</a>
+			<%} %>
+			<a href="update.jsp">개인정보 수정</a>
+			<a href="LogoutService">로그아웃</a>
 		<%}else{ %>
 			<a href="#menu">로그인</a> 
 		<%} %>
@@ -146,7 +156,11 @@
 				</header>
 				<p></p>
 				<ul class="actions">
+					<%if(info!=null){ %>
+					<li><%= %></li>
+					<%}else{%>
 					<li>로그인을 하세요.</li>
+					<%} %>
 					<li><a href="#" class="button next scrolly">전체삭제하기</a></li>
 				</ul>
 			</div>
@@ -158,19 +172,18 @@
 		<section id="contact">
 		<div class="inner">
 			<section>
-			<form>
+			<form action="MessageService" method="post">
 				<div class="field half first">
-					<label for="name">Name</label> <input type="text" id="name"
-						placeholder="보내는 사람 이름" />
+					<label for="name">Name</label> 
+					<input type="text" id="name" name="sendName" placeholder="보내는 사람 이름" />
 				</div>
 				<div class="field half">
-					<label for="email">Email</label> <input type="text" id="email"
-						placeholder="보낼 사람 이메일" />
+					<label for="email">Email</label> 
+					<input type="text" id="email" name="receiveEmail" placeholder="보낼 사람 이메일" />
 				</div>
-
 				<div class="field">
 					<label for="message">Message</label>
-					<textarea id="message" rows="6"></textarea>
+					<textarea id="message" name="message" rows="6"></textarea>
 				</div>
 				<ul class="actions">
 					<li><input type="submit" value="Send Message" class="special" /></li>
