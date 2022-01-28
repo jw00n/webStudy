@@ -42,4 +42,28 @@ insert into web_message
 values(num_message.nextval,'admin','smhrd@gmail.com','안내메시지 드립니다.',SYSDATE)
 
 --4. 조회
-select * from web_message;
+select * from web_message order by num asc;
+
+
+--
+
+--1. 게시판 테이블
+-- num,title, writer,fileName, content,b_date
+create table web_board(
+num number,
+title varchar2(500),
+writer varchar2(500),
+filename varchar2(500),
+content varchar2(500),
+b_date date
+
+);
+
+create sequence num_board 
+start with 1 
+increment by 1
+
+insert into web_board
+values(num_board.nextval,'test','test','test','test',sysdate);
+
+select * from WEB_BOARD
