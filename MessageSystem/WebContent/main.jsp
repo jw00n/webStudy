@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.MessageDAO"%>
 <%@page import="Model.MessageDTO"%>
 <%@page import="Model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -22,17 +24,17 @@
 	String tel= "로그인 하세요.";
 	String address= "로그인 하세요.";
 	
+	MessageDAO mdao= new MessageDAO();
+	ArrayList<MessageDTO> list_message=new ArrayList<MessageDTO>();
 	if (info != null) {
 		email = info.getEmail();
 		tel = info.getTel();
 		address = info.getAddress();
+		
+		list_message=mdao.showMessage(email);
 	} 
 	
 	
-	//메세지 불러오기 //이걸 굳이 세션을..
-	//받은 사람의 이메일을 불러오기 email==receiveEmail만 넘겨서?
-	//이메일을 넘겨주면 해당하는 db에서 메시지 내용 긁어와서 리턴해주고
-	MessageDTO mss=(MessageDTO)session.getAttribute("mss");
 		
 	%>
 	<!-- Wrapper -->
@@ -95,7 +97,7 @@
 					아래는 지금까지 배운 웹 기술들입니다.<br>
 				</p>
 				<ul class="actions">
-					<li><a href="#one" class="button next scrolly">확인하기</a></li>
+					<li><a href="boardMain.jsp" class="button next scrolly">게시판으로 넘어가기 </a></li>
 				</ul>
 			</div>
 		</div>
@@ -157,12 +159,31 @@
 				<p></p>
 				<ul class="actions">
 					<%if(info!=null){ %>
-					<li><%= %></li>
+					<li><%=info.getEmail() %>님에게 온 메시지</li>
 					<%}else{%>
 					<li>로그인을 하세요.</li>
 					<%} %>
-					<li><a href="#" class="button next scrolly">전체삭제하기</a></li>
+					<li><a href="DeleteMessage" class="button next scrolly">전체 삭제</a></li>
 				</ul>
+				<table>
+				<tr>
+					<th>번호</th>
+					<th>보낸 사람</th>
+					<th>내용</th>
+					<th>시간</th>
+					<th>비고</th>
+				</tr>
+					<%
+					for(int index=0; index<list_message.size(); index++){ %>
+				<tr>
+					<td><%=index+1%></td>
+					<td><%=list_message.get(index).getSendName() %></td>
+					<td><%=list_message.get(index).getMessage() %></td>
+					<td><%=list_message.get(index).getM_date() %></td>
+					<td><a href="DeleteEach?num=<%=list_message.get(index).getNum()%>" >삭제</a></td>
+				</tr>
+					<%} %>
+				</table>
 			</div>
 			</section>
 
